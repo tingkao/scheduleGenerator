@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="3600">
+    <title>Weekly Schedule</title>
+    <!-- google-font: Anton -->
+    <link href = "https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Francois+One&family=Rampart+One&display=swap" rel = "stylesheet" >
+    <style>
+    * {
+    margin: 0;
+    padding: 0;
+    }
+    body {
+        text-align: center;
+        font-family: "Didact Gothic";
+        padding-bottom: 40px;
+    }
+    .wrap {
+        max-width: 960px;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .tt div, .col div {
+        border: solid 1px black;
+        width: 120px;
+        height: 42px;
+        margin-bottom: 5px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+        border-radius: 4px;
+    }
+    .col {
+        margin-left: 24px;
+    }
+    header{
+        margin-bottom: 20px;
+    }
+    h1{
+        margin-top: 20px;
+        margin-bottom: 30px;
+        font-family: "Rampart One";
+    }
+    .col div:first-of-type{
+        color: #666;
+        font-family: "Francois One";
+    }
+    div.now {
+        animation:brath 8s  linear infinite;
+        color: rgb(255, 255, 255);
+        font-weight: 900;
+        background-color: rgb(71, 144, 255);
+        border: hidden;
+        box-shadow: 1px 1px 4px rgb(20, 65, 133);
+     }
+     div.now.empty{
+        background-color: white;
+        border: solid 2px rgb(71, 144, 255);
+        box-shadow: none;
+      }
+    @keyframes brath{
+        0% {transform: scale(.9); }
+        25% {transform: scale(1); }
+        50% {transform: scale(.9); }
+        75% {transform: scale(1); }
+        100% {transform: scale(.9); }
+     }
+
+@media screen and (max-width: 720px) {
+   div.rwd_disable{
+       display: none;
+   }
+   .wrap {
+       margin-bottom: 20px;
+   }
+}
+@media screen and (min-width: 721px) {
+   div.larger{
+     width: 240px;
+   }
+   .weekly {
+       display: none;
+   }
+}
+    </style>
+</head>
+<body>
+    <header>
+<h1>Ting's SCHEDULE</h1>
+    </header>
+    <div class="wrap">
+        <div class="tt">
+            <div class="time_sec0 disable">TimeZone[EDT]</div>
+            <div>10:00 - 11:00</div>
+            <div>11:00 - 12:00</div>
+            <div>12:00 - 13:00</div>
+            <div>13:00 - 14:00</div>
+            <div>14:00 - 15:00</div>
+            <div>15:00 - 16:00</div>
+            <div>16:00 - 17:00</div>
+            <div>17:00 - 18:00</div>
+        </div>
+        <div class="col col_MONDAY">
+            <div>MONDAY</div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>JAVA OOP</div>
+            <div>JAVA OOP</div>
+            <div></div>
+        </div>
+        <div class="col col_TUESDAY">
+            <div>TUESDAY</div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>RELATIONAL DATABASE</div>
+            <div>RELATIONAL DATABASE</div>
+        </div>
+        <div class="col col_WEDNESDAY">
+            <div>WEDNESDAY</div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>C/C++</div>
+            <div>C/C++</div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="col col_THURSDAY">
+            <div>THURSDAY</div>
+            <div></div>
+            <div></div>
+            <div>RELATIONAL DATABASE</div>
+            <div>RELATIONAL DATABASE</div>
+            <div></div>
+            <div>C/C++</div>
+            <div>C/C++</div>
+            <div></div>
+        </div>
+        <div class="col col_FRIDAY">
+            <div>FRIDAY</div>
+            <div>JAVA OOP</div>
+            <div>JAVA OOP</div>
+            <div></div>
+            <div>C/C++</div>
+            <div></div>
+            <div></div>
+            <div>CO-OP</div>
+            <div>CO-OP</div>
+        </div>
+    </div>
+    <a class="weekly" href="##">check weekly schedule</a>
+<script>
+var currentdate = new Date();
+var itNum = document.querySelector('.tt').childElementCount - 1 + 2;
+for (var i = 2; i < itNum; i++) {
+   if (document.querySelector(`.tt div:nth-child(${i})`).innerHTML.split(":")[0] == (currentdate.getHours())) {
+       document.querySelector(`.tt div:nth-child(${i})`).style.border = "solid 2px rgb(71, 144, 255)";
+       document.querySelector(`.tt div:nth-child(${i})`).style.color = "rgb(71, 144, 255)";
+       document.querySelector(`.tt div:nth-child(${i})`).style.fontWeight = "900";
+       document.querySelector(`.wrap div:nth-child(${currentdate.getDay() + 1 }) div:nth-child(${1})`).style.border = "solid 2px rgb(71, 144, 255)";
+       document.querySelector(`.wrap div:nth-child(${currentdate.getDay() + 1 }) div:nth-child(${1})`).style.color = "rgb(71, 144, 255)";
+       var section = document.querySelector(`.wrap div:nth-child(${currentdate.getDay() + 1 }) div:nth-child(${i})`);
+       section.classList.add("now");
+       if(section.innerHTML == ""){
+           section.classList.add("empty");
+       }
+    }
+}
+document.querySelectorAll(`.col`).forEach(element => {
+    element.classList.add("rwd_disable");
+});
+document.querySelectorAll(`.wrap div:nth-child(${currentdate.getDay() + 1 })`).forEach(element => {
+    element.classList.remove("rwd_disable");
+});
+document.querySelectorAll(`.wrap div:nth-child(${currentdate.getDay() + 1 }) div`).forEach(element => {
+    element.classList.add("larger");
+});
+if(60 - currentdate.getMinutes() != 60){
+    window.setTimeout(function() {
+       window.location.href = './schedule.html';
+    }, (60 - currentdate.getMinutes()) * 60 * 1000);
+}
+</script>
+<script>/*
+<!--data_key
+M10$M11$M12$M13$M14$M15$M16$M17$T10$T11$T12$T13$T14$T15$T16$T17$W10$W11$W12$W13$W14$W15$W16$W17$H10$H11$H12$H13$H14$H15$H16$H17$F10$F11$F12$F13$F14$F15$F16$F17$
+-->
+
+<!--data_value
+na$na$na$na$na$JAVA OOP$JAVA OOP$na$na$na$na$na$na$na$RELATIONAL DATABASE$RELATIONAL DATABASE$na$na$na$na$C/C++$C/C++$na$na$na$na$RELATIONAL DATABASE$RELATIONAL DATABASE$na$C/C++$C/C++$na$JAVA OOP$JAVA OOP$na$C/C++$na$na$CO-OP$CO-OP$
+-->
+*/</script>
+</body>
+</html>
