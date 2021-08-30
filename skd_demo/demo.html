@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>console demo</title>
+<!-- google-font: Anton -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .console_win {
+            max-width: 800px;
+            margin: auto;
+            font-size: 0;
+            background-color: black;
+            border-right: solid 0.5px black;
+            margin-top: 10px;
+        }
+        img {
+            width: 100%;
+        }
+        .btn {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .btn:active {
+            background-color: rgb(0, 133, 88);
+            box-shadow: 0 0 2px black;
+        }
+        .group {
+            max-width: 800px;
+            margin: auto;
+            display: flex;
+            margin-top: 20px;
+            justify-content: space-between;
+        }
+        .gright {
+            display: flex;
+            justify-content: flex-end;
+        }
+        #skd{
+            background-color: rgb(43, 155, 247);
+            padding: 0;
+        }
+        #skd a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #fff;
+        }
+        .nextBtn {
+            margin-left: 20px;
+        }
+        .previousBtn {
+            margin-left: 20px;
+        }
+        .nav {
+            max-width: 800px;
+            margin: auto;
+            margin-top: 10px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: center;
+        }
+        h2 {
+            color: #aaa;
+            cursor: pointer;
+        }
+        h2:hover {
+            transform: scale(1.05);
+        }
+        h2~h2 {
+            margin-left: 20px;
+        }
+
+        h2.active{
+            color: rgb(3, 95, 41);
+        }
+        #detail {
+            max-width: 800px;
+            margin: auto;
+            font-family: 'Josefin Sans';
+        }
+    </style>
+    
+</head>
+<body>
+    <nav class="nav">
+        <h2 id="main" class="active">[Main]</h2>
+        <h2 id="addCourse">[Add New Course]</h2>
+        <h2 id="courseName">[Change Couse Name]</h2>
+        <h2 id="timeSection">[Change Time Sections]</h2>
+    </nav>
+    <h3 id="detail">
+        How to create a new schedule
+    </h3>
+
+    <div class="console_win">
+        <img id= "img"src="./img/demo01.png" alt="">
+    </div>
+    <div class="group">
+        <div class="gleft">
+            <div class="btn" id="skd"><a target="_blank" href="https://www.google.com/">Schedule[S]</a></div>
+        </div>
+        <div class="gright">
+            <div class="btn resetBtn" onclick="reset()">Reset[R]</div>
+            <div class="btn previousBtn" onclick="previous()">Step Out[N]</div>
+            <div class="btn nextBtn" onclick="next()">Step Into[M]</div>
+        </div>
+
+    </div>
+
+    <script>
+        var data = [];
+        let index = 0;
+        let status = 'main';
+
+        function exchangeDataArray(){
+            if(status == 'main'){
+                data = [];
+                document.querySelector("#detail").innerText = "How to create a new schedule";
+                for(let i = 1; i < 22; i++){
+                    if(i < 10){
+                        data.push(`./img/demo0${i}.png`);
+                    }else {
+                        data.push(`./img/demo${i}.png`);
+                    } 
+                }
+            }
+            if(status == 'addCourse'){
+                data = [];
+                document.querySelector("#detail").innerText = "How to add courses into my old schedule";
+                for(let i = 1; i < 8; i++){
+                    data.push(`./img/readFromOldFile/read0${i}.png`);
+                }
+                for(let i = 1; i < 10; i++){
+                    data.push(`./img/readFromOldFile/A/A0${i}.png`);
+                }
+                data.push(`./img/readFromOldFile/A/A10.png`);
+            }
+            if(status == 'courseName'){
+                data = [];
+                document.querySelector("#detail").innerText = "How to change course name";
+                for(let i = 1; i < 8; i++){
+                    data.push(`./img/readFromOldFile/read0${i}.png`);
+                }
+                for(let i = 1; i < 9; i++){
+                    data.push(`./img/readFromOldFile/B/B0${i}.png`);
+                }
+            }
+            if(status == 'timeSection'){
+                data = [];
+                document.querySelector("#detail").innerText = "How to adjust/delete schedule based on a time section";
+                for(let i = 1; i < 8; i++){
+                    data.push(`./img/readFromOldFile/read0${i}.png`);
+                }
+                for(let i = 1; i < 10; i++){
+                    data.push(`./img/readFromOldFile/C/C0${i}.png`);
+                }
+                for(let i = 10; i < 13; i++){
+                    data.push(`./img/readFromOldFile/C/C${i}.png`);
+                }
+
+            }
+            index = 0;
+            document.querySelector("#img").src = data[index];
+        }
+        function next(){
+            if(index == data.length - 1){
+                if (confirm('End of the program!\r\nDo you want to see the complete schedule?')) {
+                // show schedule
+                console.log('***schedule');
+                } else {
+                // Do nothing!
+                }
+            }else {
+                index++;
+                document.querySelector("#img").src = data[index];
+            } 
+        }
+        function previous(){
+            if(index == 0){
+                alert("This is the start of the program!");
+            }else {
+                index--;
+                document.querySelector("#img").src = data[index];
+            } 
+        }
+        function reset(){
+            index = 0;
+            document.querySelector("#img").src = data[index];
+        }
+        document.addEventListener('keydown', logKey);
+
+            function logKey(e) {
+                if(e.code == 'KeyM'){
+                    next();
+                }else if(e.code == 'KeyN'){
+                    previous()
+                }else if(e.code == 'KeyR'){
+                    reset();
+                }else if(e.code == 'KeyS'){
+                    document.querySelector("#skd a").click();
+                }
+        }
+
+        document.addEventListener('click', (e) => {
+            if(e.target.tagName == 'H2'){
+                document.querySelectorAll('h2').forEach(element => {
+                    if(element.classList.contains('active')){
+                        element.classList.remove('active');
+                    }
+                })
+                e.target.classList.add('active');
+                if(status != e.target.id){
+                    status = e.target.id;
+                    exchangeDataArray();
+                }else {
+                    alert(`We are in  ${e.target.innerText}`);
+                }
+            }
+        })
+        exchangeDataArray();
+    </script>
+</body>
+</html>
