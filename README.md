@@ -4,7 +4,8 @@ Schedule Generator
 
 
 ## Getting started
-- Download [executable](./exe) from ```scheduleGenerator/exe/skd.exe```
+1. Download [executable](./exe) from ```scheduleGenerator/exe/skd.exe```
+2. Run ```skd.exe```
 
 ## How to use:
 - [Process Demo](https://tingkao.github.io/scheduleGenerator/skd_console_demo/demo.html) through console window
